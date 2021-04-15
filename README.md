@@ -8,8 +8,8 @@ Installation Required for running ipynb file:
 
 Installation Required for running flask project:
 
-1.Python environment
-2.flask
-3.Elasticsearch
+1. Python environment
+2. flask
+3. Elasticsearch
 
 
