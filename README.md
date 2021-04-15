@@ -7,6 +7,9 @@ Installation Required for running ipynb file:
 3. Kibana - for visualizing custom queries
 
 Installation Required for running flask project:
+
 1.Python environment
 2.flask
 3.Elasticsearch
+
+
