@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Search Engine</title>
+        <link rel="stylesheet" href="../static/index.css">
+    </head>
+    <body>
+        <div class="container">
+            <form action="/" method="post" autocomplete="off">
+                <label for="q"></label><input type="text" name="q" id="q" value="{{q}}" placeholder="Search..." />
+                <div class="result_btn">
+                    <input type="submit" name="BM25" value="BM25"/>
+                    <input type="submit" name="DFR" value="DFR"/>
+                    <input type="submit" name="IB" value="IB"/>
+                </div>
+                {% if model == 'est_bm25' %}
+                    <b>BM25 Results</b>
+                {% elif model == 'est_dfr' %}
+                    <b>DFR Results</b>
+                {% elif model == 'est_ib' %}
+                    <b>IB Results</b>
+                {% endif %}
+                {% for resp in response %}
+                    {% if resp == 'hits' and response[resp]['hits'] != []%}
+                        <table border = 1>
+                            <th>Topic</th>
+                            <th>Author</th>
+                            <th>Abstract</th>
+                            {% for r in response[resp]['hits'] %}
+                                <tr>
+                                    <td>{{ r['_source']['title'] }}</td>
+                                    <td>{{ r['_source']['author'] }}</td>
+                                    <td>{{ r['_source']['abstract'] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% elif response[resp]['hits'] == [] %}
+                            <p class="error_not_found">No Results Found</p>
+                    {% endif %}
+                {% endfor %}
+            </form>
+        </div>
+    </body>
+</html>
